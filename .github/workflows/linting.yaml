@@ -16,4 +16,4 @@ jobs:
       - name: Install Flake8
         run: pip3 install flake8==3.8.3
       - name: Run Flake8
-        run: flake8 src
+        run: flake8 .
