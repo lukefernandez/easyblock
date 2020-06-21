@@ -19,7 +19,7 @@ def get_args():
 
 
 def get_domains():
-    home_path = os.path.expanduser("~")
+    home_path = os.path.expanduser(f"~{os.environ.get('SUDO_USER')}")
     config_file_name = ".easyblock"
     with open(f"{home_path}/{config_file_name}", "r") as config_file:
         domains = []
@@ -29,7 +29,12 @@ def get_domains():
 
 
 def turn_on():
-    print("Turning on")
+    domains = get_domains()
+    with open("/etc/hosts", "a") as hosts_file:
+        hosts_file.write("### easyblock_start ### \n")
+        for domain in domains:
+            hosts_file.write(f"127.0.0.1 {domain}")
+        hosts_file.write("### easyblock_end ### \n")
 
 
 def turn_off():
