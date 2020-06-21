@@ -4,7 +4,11 @@
 __version__ = "0.1.0"
 
 import os
+import re
 import argparse
+
+block_start_string = "### easyblock_start ### \n"
+block_end_string = "### easyblock_end ### \n"
 
 
 def get_args():
@@ -31,19 +35,36 @@ def get_domains():
 def turn_on():
     domains = get_domains()
     with open("/etc/hosts", "a") as hosts_file:
-        hosts_file.write("### easyblock_start ### \n")
+        hosts_file.write(block_start_string)
         for domain in domains:
             hosts_file.write(f"127.0.0.1 {domain}")
-        hosts_file.write("### easyblock_end ### \n")
+        hosts_file.write(block_end_string)
 
 
 def turn_off():
-    print("Turning off")
+    """
+    TODO: This can almost certainly be cleaned up. Let's make that happen.
+    """
+    with open("/etc/hosts", "r") as hosts_file:
+        with open("/etc/hosts-future", "w") as future_hosts_file:
+            delete = False
+            for line in hosts_file:
+                if re.match(line, block_start_string):
+                    delete = True
+                    continue
+                elif re.match(line, block_end_string):
+                    delete = False
+                    continue
+
+                if delete:
+                    continue
+                else:
+                    future_hosts_file.write(line)
+    os.replace("/etc/hosts-future", "/etc/hosts")
 
 
 def main():
     args = get_args()
-
     if args.target_state == "on":
         turn_on()
     elif args.target_state == "off":
