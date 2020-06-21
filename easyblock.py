@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 # easyblock.py
+#
+# Tested on Ubuntu 20.04
 
 __version__ = "0.1.0"
 
