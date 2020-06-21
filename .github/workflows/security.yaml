@@ -16,4 +16,4 @@ jobs:
       - name: Install Bandit
         run: pip3 install bandit==1.6.2
       - name: Run Bandit
-        run: bandit -r src
+        run: bandit -r . --exclude "lib,.svn,CVS,.bzr,.hg,.git,__pycache__,.tox,.eggs,*.egg"
