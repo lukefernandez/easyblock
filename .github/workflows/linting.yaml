@@ -1,0 +1,19 @@
+name: Linting
+on:
+  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  flake8:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check Out Code
+        uses: actions/checkout@v2
+      - name: Set Up Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8.2"
+      - name: Install Flake8
+        run: pip3 install flake8==3.8.3
+      - name: Run Flake8
+        run: flake8 src
