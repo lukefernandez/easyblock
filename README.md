@@ -21,6 +21,8 @@ I think a website blocker should be something that:
 
 ## Usage
 
+![easyblock](./easyblock.svg)
+
 To use `easyblock`, simply put an `.easyblock` file in your home directory (`~`) with a domain on each line.
 
 Here is an example configuration:
@@ -50,4 +52,5 @@ It's really that easy!
 
 ## Tested On
 
+- macOS Catalina 10.15.4
 - Ubuntu 20.04
