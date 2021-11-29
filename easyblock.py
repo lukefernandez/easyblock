@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 # easyblock.py
 #
-# Tested on Ubuntu 20.04
+# Tested on:
+# - Ubuntu 20.04
+# - macOS Catalina 10.15.4
 
 __version__ = "0.1.0"
 
