@@ -1,0 +1,16 @@
+name: tests
+on: [push, pull_request]
+jobs:
+  pytest:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check Out Code
+        uses: actions/checkout@v2
+      - name: Set Up Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.12"
+      - name: Install Pytest
+        run: pip3 install pytest==7.4.3
+      - name: Run Pytest Check
+        run: pytest
