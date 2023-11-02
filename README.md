@@ -2,6 +2,8 @@
 
 > An extremely light-weight website blocker.
 
+![checks](https://github.com/lukefernandez/easyblock/actions/workflows/checks.yaml/badge.svg)
+
 ## Overview
 
 Why do I need a heavy-weight browser extension or clunky service running on my machine to block a few websites?
